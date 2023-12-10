@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
@@ -59,7 +59,7 @@ export default function InitialModal() {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onScroll={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="space-y-8 px-6">
               <div className="flex items-center justify-center text-center">
                 TODO: Image Upload
