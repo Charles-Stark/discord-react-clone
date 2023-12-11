@@ -25,14 +25,11 @@ export default function FileUpload({
         <Image fill src={value} alt="Upload" className="rounded-full" />
         <button
           onClick={async () => {
-            // const fileKey = value.split("/").pop();
-            // if (fileKey) {
             await axios.delete("api/uploadthing", {
               data: {
                 url: value,
               },
             });
-            // }
             onChange("");
           }}
           className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm"
