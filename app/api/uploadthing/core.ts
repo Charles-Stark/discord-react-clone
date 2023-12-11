@@ -1,5 +1,6 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { auth } from "@clerk/nextjs";
+import { UTApi } from "uploadthing/server";
 
 const f = createUploadthing();
 
@@ -22,3 +23,5 @@ export const ourFileRouter = {
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
+
+export const utApi = new UTApi();
