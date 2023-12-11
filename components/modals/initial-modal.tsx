@@ -50,6 +50,7 @@ export default function InitialModal() {
   });
 
   const isLoading = form.formState.isSubmitting;
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
   };
