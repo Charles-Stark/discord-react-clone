@@ -12,7 +12,6 @@ export default function NavigationAction() {
       <ActionTooltip side="right" align="center" label="Add a server">
         <button
           onClick={() => {
-            console.log("clicked");
             onOpen("createServer");
           }}
           className="group flex items-center"
