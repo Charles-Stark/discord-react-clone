@@ -5,6 +5,7 @@ import React from "react";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
 import MyClerkProvider from "@/components/providers/clerk-provider";
+import { ModalProvider } from "@/components/providers/modal-provider";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -27,7 +28,10 @@ export default function RootLayout({
           enableSystem={false}
           storageKey="discord-theme"
         >
-          <MyClerkProvider>{children}</MyClerkProvider>
+          <MyClerkProvider>
+            <ModalProvider />
+            {children}
+          </MyClerkProvider>
         </ThemeProvider>
       </body>
     </html>
