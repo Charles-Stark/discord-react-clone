@@ -63,7 +63,12 @@ export default function CreateServerModal() {
     }
   };
 
-  const handleClose = () => {
+  const handleClose = async () => {
+    await axios.delete("/api/uploadthing", {
+      data: {
+        url: form.getValues("imageUrl"),
+      },
+    });
     form.reset();
     onClose();
   };
