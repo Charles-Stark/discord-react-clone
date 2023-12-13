@@ -1,21 +1,22 @@
 "use client";
 
+import axios from "axios";
+import { Check, Copy, RefreshCw } from "lucide-react";
+import { useState } from "react";
+
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useModal } from "@/hooks/use-modal-store";
 import { Label } from "@/components/ui/label";
+import { useModal } from "@/hooks/use-modal-store";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Check, Copy, RefreshCw } from "lucide-react";
 import { useOrigin } from "@/hooks/use-origin";
-import { useState } from "react";
-import axios from "axios";
 
-export default function InviteModal() {
+export const InviteModal = () => {
   const { onOpen, isOpen, onClose, type, data } = useModal();
   const origin = useOrigin();
 
@@ -28,7 +29,7 @@ export default function InviteModal() {
   const inviteUrl = `${origin}/invite/${server?.inviteCode}`;
 
   const onCopy = () => {
-    navigator.clipboard.writeText(inviteUrl);
+    navigator.clipboard.writeText(inviteUrl).then();
     setCopied(true);
 
     setTimeout(() => {
@@ -91,4 +92,4 @@ export default function InviteModal() {
       </DialogContent>
     </Dialog>
   );
-}
+};
