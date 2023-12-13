@@ -25,7 +25,7 @@ export default function FileUpload({
         <Image fill src={value} alt="Upload" className="rounded-full" />
         <button
           onClick={async () => {
-            await axios.delete("api/uploadthing", {
+            await axios.delete("/api/uploadthing", {
               data: {
                 url: value,
               },
