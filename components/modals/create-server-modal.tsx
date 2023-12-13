@@ -64,11 +64,13 @@ export default function CreateServerModal() {
   };
 
   const handleClose = async () => {
-    await axios.delete("/api/uploadthing", {
-      data: {
-        url: form.getValues("imageUrl"),
-      },
-    });
+    if (form.getValues("imageUrl")) {
+      await axios.delete("/api/uploadthing", {
+        data: {
+          url: form.getValues("imageUrl"),
+        },
+      });
+    }
     form.reset();
     onClose();
   };

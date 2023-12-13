@@ -121,7 +121,7 @@ export default function MembersModal() {
                 loadingId !== member.id && (
                   <div className="ml-auto">
                     <DropdownMenu>
-                      <DropdownMenuTrigger>
+                      <DropdownMenuTrigger tabIndex={-1}>
                         <MoreVertical className="h-4 w-4 text-zinc-500" />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent side="left">
