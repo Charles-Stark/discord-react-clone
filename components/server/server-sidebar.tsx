@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { channel } from "diagnostics_channel";
 import { ChannelType } from "@prisma/client";
+import ServerHeader from "@/components/server/server-header";
 
 interface ServerSidebarProps {
   serverId: string;
@@ -57,6 +58,8 @@ export default async function ServerSidebar({ serverId }: ServerSidebarProps) {
     ?.role;
 
   return (
-    <div className="flex flex-col h-full text-primary w-full dark:bg-[#2B2D31] bg-[#F2F3F5]"></div>
+    <div className="flex flex-col h-full text-primary w-full dark:bg-[#2B2D31] bg-[#F2F3F5]">
+      <ServerHeader server={server} role={role} />
+    </div>
   );
 }
