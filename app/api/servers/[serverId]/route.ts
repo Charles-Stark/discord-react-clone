@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
+import { UTApi } from "uploadthing/server";
 
 export async function DELETE(
   req: Request,
@@ -13,6 +14,14 @@ export async function DELETE(
     if (!profile) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
+
+    const tempServer = await db.server.findUnique({
+      where: {
+        id: params.serverId,
+      },
+    });
+    const utApi = new UTApi();
+    await utApi.deleteFiles(String(tempServer?.imageUrl.split("/").pop()));
 
     const server = await db.server.delete({
       where: {
