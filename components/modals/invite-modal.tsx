@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useOrigin } from "@/hooks/use-origin";
 
-export const InviteModal = () => {
+export default function InviteModal() {
   const { onOpen, isOpen, onClose, type, data } = useModal();
   const origin = useOrigin();
 
@@ -92,4 +92,4 @@ export const InviteModal = () => {
       </DialogContent>
     </Dialog>
   );
-};
+}

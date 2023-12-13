@@ -45,7 +45,7 @@ const roleIconMap = {
   ADMIN: <ShieldAlert className="h-4 w-4 text-rose-500" />,
 };
 
-export const MembersModal = () => {
+export default function MembersModal() {
   const router = useRouter();
   const { onOpen, isOpen, onClose, type, data } = useModal();
   const [loadingId, setLoadingId] = useState("");
@@ -173,4 +173,4 @@ export const MembersModal = () => {
       </DialogContent>
     </Dialog>
   );
-};
+}
