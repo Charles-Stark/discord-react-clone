@@ -40,15 +40,13 @@ export default function ServerHeader({ server, role }: ServerHeaderProps) {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 text-xs font-medium text-black dark:text-neutral-400 space-y-[2px]">
-        {(isModerator || isAdmin) && (
-          <DropdownMenuItem
-            onClick={() => onOpen("invite", { server })}
-            className="text-indigo-600 dark:text-indigo-400 px-3 py-2 text-sm cursor-pointer"
-          >
-            Invite People
-            <UserPlus className="h-4 w-4 ml-auto" />
-          </DropdownMenuItem>
-        )}
+        <DropdownMenuItem
+          onClick={() => onOpen("invite", { server })}
+          className="text-indigo-600 dark:text-indigo-400 px-3 py-2 text-sm cursor-pointer"
+        >
+          Invite People
+          <UserPlus className="h-4 w-4 ml-auto" />
+        </DropdownMenuItem>
         {isAdmin && (
           <DropdownMenuItem
             // onClick={() => onOpen("editServer", { server })}
@@ -67,7 +65,7 @@ export default function ServerHeader({ server, role }: ServerHeaderProps) {
             <Users className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
         )}
-        {isModerator && (
+        {(isModerator || isAdmin) && (
           <DropdownMenuItem
             // onClick={() => onOpen("createChannel")}
             className="px-3 py-2 text-sm cursor-pointer"
@@ -76,7 +74,7 @@ export default function ServerHeader({ server, role }: ServerHeaderProps) {
             <PlusCircle className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
         )}
-        {isModerator && <DropdownMenuSeparator />}
+        <DropdownMenuSeparator />
         {isAdmin && (
           <DropdownMenuItem
             // onClick={() => onOpen("deleteServer", { server })}
