@@ -23,6 +23,8 @@ export default function ServerMember({ member, server }: ServerMemberProps) {
   const params = useParams();
   const router = useRouter();
 
+  const icon = roleIconMap[member.role]
+
   const onClick = () => {
     router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
   };
@@ -48,6 +50,7 @@ export default function ServerMember({ member, server }: ServerMemberProps) {
       >
         {member.profile.name}
       </p>
+      {icon}
     </button>
   );
 }
