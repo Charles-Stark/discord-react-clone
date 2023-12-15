@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import qs from "query-string";
+import axios from "axios";
 
 interface ChatInputProps {
   apiUrl: string;
@@ -39,7 +41,18 @@ export default function ChatInput({
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values.content);
+    try {
+      const url = qs.stringifyUrl({
+        url: apiUrl,
+        query,
+      });
+
+      await axios.post(url, values);
+      form.reset();
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
