@@ -3,6 +3,7 @@ import { redirectToSignIn } from "@clerk/nextjs";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import ChatHeader from "@/components/chat/chat-header";
+import { ChannelType } from "@prisma/client";
 
 interface ChannelIdPageProps {
   params: {
@@ -42,7 +43,9 @@ export default async function ChannelIdPage({ params }: ChannelIdPageProps) {
         serverId={channel.serverId}
         type="channel"
       />
-      channel
+      {channel.type === ChannelType.TEXT && <>Chat message</>}
+      {channel.type === ChannelType.AUDIO && <>MediaRoom - audio</>}
+      {channel.type === ChannelType.VIDEO && <>MediaRoom - video</>}
     </div>
   );
 }
