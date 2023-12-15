@@ -1,8 +1,11 @@
-import { auth } from "@clerk/nextjs";
+import { NextApiRequest } from "next";
+import { getAuth } from "@clerk/nextjs/server";
+
+// @ts-ignore
 import { db } from "@/lib/db";
 
-export const currentProfile = async () => {
-  const { userId } = auth();
+export const currentProfilePages = async (req: NextApiRequest) => {
+  const { userId } = getAuth(req);
 
   if (!userId) {
     return null;
