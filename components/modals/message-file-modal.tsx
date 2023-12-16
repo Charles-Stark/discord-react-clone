@@ -39,7 +39,14 @@ export default function MessageFileModal() {
     },
   });
 
-  const handleClose = () => {
+  const handleClose = async () => {
+    if (form.getValues("fileUrl")) {
+      await axios.delete("/api/uploadthing", {
+        data: {
+          url: form.getValues("fileUrl"),
+        },
+      });
+    }
     form.reset();
     onClose();
   };
@@ -60,7 +67,8 @@ export default function MessageFileModal() {
 
       form.reset();
       router.refresh();
-      handleClose();
+      form.reset();
+      onClose();
     } catch (error) {
       console.log(error);
     }
