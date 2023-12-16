@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import ChatHeader from "@/components/chat/chat-header";
 import { ChannelType } from "@prisma/client";
 import ChatInput from "@/components/chat/chat-input";
+import ChatMessages from "@/components/chat/chat-messages";
 
 interface ChannelIdPageProps {
   params: {
@@ -46,7 +47,20 @@ export default async function ChannelIdPage({ params }: ChannelIdPageProps) {
       />
       {channel.type === ChannelType.TEXT && (
         <>
-          <div className="flex-1">Chat message</div>
+          <ChatMessages
+            member={member}
+            name={channel.name}
+            chatId={channel.id}
+            type="channel"
+            apiUrl="/api/messages"
+            socketUrl="/api/socket/messages"
+            socketQuery={{
+              channelId: channel.id,
+              serverId: channel.serverId,
+            }}
+            paramKey="channelId"
+            paramValue={channel.id}
+          />
           <ChatInput
             name={channel.name}
             type="channel"
