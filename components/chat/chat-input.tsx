@@ -10,6 +10,7 @@ import { Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import qs from "query-string";
 import axios from "axios";
+import EmojiPicker from "@/components/emoji-picker";
 
 interface ChatInputProps {
   apiUrl: string;
@@ -80,7 +81,13 @@ export default function ChatInput({
                     }`}
                     {...field}
                   />
-                  <div className="absolute top-7 right-8">Emoji picker</div>
+                  <div className="absolute top-7 right-8">
+                    <EmojiPicker
+                      onChange={(emoji: string) =>
+                        field.onChange(`${field.value}${emoji}`)
+                      }
+                    />
+                  </div>
                 </div>
               </FormControl>
             </FormItem>
