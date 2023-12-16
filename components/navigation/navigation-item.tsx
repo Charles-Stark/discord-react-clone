@@ -4,6 +4,7 @@ import ActionTooltip from "@/components/astion-tooltip";
 import { cn } from "@/lib/utils";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import { useState } from "react";
 
 interface NavigationItemProps {
   id: string;
@@ -18,6 +19,7 @@ export default function NavigationItem({
 }: NavigationItemProps) {
   const params = useParams();
   const router = useRouter();
+  const [isImg, setIsImg] = useState(true);
 
   const onClick = () => {
     router.push(`/servers/${id}`);
@@ -40,7 +42,19 @@ export default function NavigationItem({
               "bg-primary/10 text-primary rounded-[16px]",
           )}
         >
-          <Image fill src={imageUrl} alt="Server" />
+          {isImg && (
+            <Image
+              fill
+              src={imageUrl}
+              alt="Server"
+              onError={() => setIsImg(false)}
+            />
+          )}
+          {!isImg && (
+            <div className="w-full h-full select-none bg-red-400 justify-center items-center flex">
+              {name[0]}
+            </div>
+          )}
         </div>
       </button>
     </ActionTooltip>
