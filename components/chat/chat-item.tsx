@@ -239,7 +239,7 @@ export default function ChatItem({
           <ActionTooltip label="Delete">
             <Trash
               onClick={() => {
-                onOpen("", {
+                onOpen("deleteMessage", {
                   apiUrl: `${socketUrl}/${id}`,
                   query: socketQuery,
                 });
